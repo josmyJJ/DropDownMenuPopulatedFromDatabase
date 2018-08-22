@@ -7,9 +7,11 @@
 <body>
 
 <h1>Course List</h1>
+<a href="/addsubject">Add a Subject</a><br />
 <a href="/add">Add a Course</a><br />
 <table>
     <tr>
+        <th>Subject</th>
         <th>Title</th>
         <th>Instructor</th>
         <th>Credits</th>
@@ -17,6 +19,7 @@
     </tr>
     <tr th:each="course : ${courses}">
         <td th:text="${course.title}"></td>
+        <td th:text="${course.subject.title}"></td>
         <td th:text="${course.instructor}"></td>
         <td th:text="${course.credit}"></td>
         <td>

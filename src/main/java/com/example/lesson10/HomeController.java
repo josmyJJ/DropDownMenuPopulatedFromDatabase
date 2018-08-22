@@ -19,15 +19,20 @@ public class HomeController {
   @Autowired
   CourseRepository courseRepository;
 
+  @Autowired
+  SubjectRepository subjectRepository;
+
   @RequestMapping("/")
   public String listCourses(Model model){
     model.addAttribute("courses", courseRepository.findAll());
+    model.addAttribute("subjects", subjectRepository.findAll());
     return "list";
   }
 
   @GetMapping("/add")
   public String courseForm(Model model){
     model.addAttribute("course", new Course());
+    model.addAttribute("subjects", subjectRepository.findAll());
     return "courseform";
   }
 
@@ -37,6 +42,22 @@ public class HomeController {
       return "courseform";
     }
     courseRepository.save(course);
+    return "redirect:/";
+  }
+
+  @GetMapping("/addsubject")
+  public String subjectForm(Model model){
+    model.addAttribute("subject", new Subject());
+    return "subjectform";
+  }
+
+
+  @PostMapping("/processsubject")
+  public String processSubject(@Valid Subject subject, BindingResult result){
+    if(result.hasErrors()){
+      return "subjectform";
+    }
+    subjectRepository.save(subject);
     return "redirect:/";
   }
 
@@ -54,7 +75,8 @@ public class HomeController {
 
   @RequestMapping("/delete/{id}")
   public String delCourse(@PathVariable("id") long id){
-    courseRepository.deleteById(id);
+    System.out.println(id);
+    courseRepository.delete(courseRepository.findById(id).get());
     return "redirect:/";
   }
 }
