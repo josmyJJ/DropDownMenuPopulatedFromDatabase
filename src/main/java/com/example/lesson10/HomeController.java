@@ -37,8 +37,10 @@ public class HomeController {
   }
 
   @PostMapping("/process")
-  public String processForm(@Valid Course course, BindingResult result){
+  public String processForm(@Valid Course course, BindingResult result, Model
+          model){
     if (result.hasErrors()){
+      model.addAttribute("subjects", subjectRepository.findAll());
       return "courseform";
     }
     courseRepository.save(course);
@@ -53,10 +55,18 @@ public class HomeController {
 
 
   @PostMapping("/processsubject")
-  public String processSubject(@Valid Subject subject, BindingResult result){
+  public String processSubject(@Valid Subject subject, BindingResult result,
+                               Model model){
     if(result.hasErrors()){
       return "subjectform";
     }
+
+    if(subjectRepository.findByTitle(subject.getTitle()) != null){
+      model.addAttribute("message", "You already have a subject called " +
+              subject.getTitle() + "!" + " Try something else.");
+      return "subjectform";
+    }
+
     subjectRepository.save(subject);
     return "redirect:/";
   }
@@ -69,14 +79,16 @@ public class HomeController {
 
   @RequestMapping("/update/{id}")
   public String updateCourse(@PathVariable("id") long id, Model model){
+    model.addAttribute("subjects", subjectRepository.findAll());
     model.addAttribute("course", courseRepository.findById(id).get());
     return "courseform";
   }
 
   @RequestMapping("/delete/{id}")
   public String delCourse(@PathVariable("id") long id){
-    System.out.println(id);
-    courseRepository.delete(courseRepository.findById(id).get());
+//    System.out.println(id);
+//    courseRepository.delete(courseRepository.findById(id).get());
+    courseRepository.deleteById(id);
     return "redirect:/";
   }
 }

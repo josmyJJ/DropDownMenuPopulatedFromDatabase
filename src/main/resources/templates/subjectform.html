@@ -19,6 +19,8 @@
     <span th:if="${#fields.hasErrors('title')}"
           th:errors="*{title}"></span><br />
 
+    <span th:text="${message}"></span><br/>
+
     <input type="submit" value="Submit" />
 
 </form>

@@ -29,8 +29,6 @@ public class Course {
   private int credit;
 
   @ManyToOne
-          (fetch = FetchType.EAGER)
-  @JoinColumn(name = "subject_id")
   private Subject subject;
 
   public long getId() {

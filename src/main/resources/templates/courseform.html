@@ -17,7 +17,7 @@
     Subject:<select th:field="*{subject}" class="form-control input-md">
             <option th:each="option: ${subjects}"
                     th:value="${option.id}">[[${option.title}]]</option>
-        </select>
+        </select><br/>
 
     Title :<input type="text" th:field="*{title}" />
     <span th:if="${#fields.hasErrors('title')}"

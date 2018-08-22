@@ -13,9 +13,10 @@ public class Subject {
 
   @NotNull
   @Size(min=4)
+  @Column(unique = true)
   private String title;
 
-  @OneToMany(mappedBy = "subject", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+  @OneToMany(mappedBy = "subject")
   public Set<Course>courses;
 
   public long getId() {
