@@ -1,4 +1,4 @@
-# Lesson 10 - Drop Down list populated from database  
+# Lesson 15_1 - Drop Down list populated from database  
 ## The Walkthrough
 
 1. Get copy of lesson10
@@ -48,9 +48,9 @@ public interface SubjectRepository extends CrudRepository<Subject, Long> {
 }
 ```
 
-5. Edit a Course Class
+5. Edit the Course class
 	* Open Course.java
-	* Add the relationship
+	* Add the relationship as shown below 
 
 ```java
 
@@ -196,7 +196,7 @@ public class HomeController {
 
 9. Edit course form template
   	* Open courseform.html
-	* Add the following lines of codes inside the form
+	* Add the following lines of codes below the line that begins with ```<input type="hidden" ```
 
 ```html
 Subject:<select th:field="*{subject}" class="form-control input-md">
