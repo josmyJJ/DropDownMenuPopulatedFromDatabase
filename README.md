@@ -32,8 +32,8 @@ public class Subject {
 ```
 
 3. Autogenerate getters and setters
-  * Right-click on the word Course and select generate -> Getters and Setters
-  * Select all the fields list and click OK
+  	* Right-click on the word Course and select generate -> Getters and Setters
+  	* Select all the fields list and click OK
 
 4. Create a Repository
 	* Right click on com.example.demo and click New -> Class
@@ -158,7 +158,7 @@ public class HomeController {
 ```
 
 8. Create a Template for the subject form
-  * Right click on templates and click New -> Html
+  	* Right click on templates and click New -> Html
 	* Name it subjectform.html
 	* Edit it to look like this:
 
@@ -195,7 +195,7 @@ public class HomeController {
 ```
 
 9. Edit course form template
-  * Open courseform.html
+  	* Open courseform.html
 	* Add the following lines of codes inside the form
 
 ```html
@@ -249,7 +249,7 @@ Subject:<select th:field="*{subject}" class="form-control input-md">
 ```
 
 10. Edit the course listings template
-  * Open list.html
+  	* Open list.html
 	* Edit it to look like this:
 
 ```html
